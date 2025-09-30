@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentDash | Recruitment Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-light: #F5F5F5;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --border-light: #DDDDDD;
+            --accent-green: #D4F78F;
+            --tag-green: #DFFFC7;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--text-primary);
+        }
+        
+        .logo span {
+            color: var(--accent-green);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-green);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .user-welcome {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            border: none;
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--text-primary);
+            color: var(--text-primary);
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--text-primary);
+            color: var(--white);
+        }
+        
+        .btn-primary {
+            background-color: var(--text-primary);
+            color: var(--white);
+            border: 1px solid var(--text-primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: #333333;
+            border-color: #333333;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-green);
+            color: var(--text-primary);
+            border: 1px solid var(--accent-green);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0e67a;
+            border-color: #c0e67a;
+        }
+        
+        /* Hero Section with Local Video Background */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* Jobs Section */
+        .jobs-filter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .search-box {
+            flex-grow: 1;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .filter-select {
+            padding: 12px 15px;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            background-color: var(--white);
+            font-size: 14px;
+        }
+        
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .job-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent-green);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .job-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .job-company {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .new-tag {
+            background-color: var(--tag-green);
+            color: var(--text-primary);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .job-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .job-detail {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .job-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .job-price {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--white);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--border-light);
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--accent-green);
+            transform: scale(1.05);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-green);
+            color: var(--text-primary);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .price span {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-features li i {
+            color: var(--accent-green);
+            margin-right: 10px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--text-primary);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--white);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-light);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-green);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .notification-success {
+            background-color: #4CAF50;
+        }
+        
+        .notification-error {
+            background-color: #f44336;
+        }
+        
+        .notification-info {
+            background-color: #2196F3;
+        }
+        
+        /* Loading Overlay */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 9999;
+        }
+        
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--accent-green);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin: 20px 0;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .auth-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .jobs-filter {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                max-width: 100%;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Talent<span>Dash</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#jobs">Find Jobs</a></li>
+                    <li><a href="#crawler">Crawler Data</a></li>
+                    <li><a href="#agents">Find Agents</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline" onclick="showLoginModal()">Log In</a>
+                <a href="#" class="btn btn-primary" onclick="showRegisterModal()">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Local Video Background -->
+    <section class="hero" id="home">
+        <video autoplay muted loop class="video-background">
+            <source src="/Users/yuecheng/Downloads/hire.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>ARE YOU JOB-READY?</h1>
+            <p>Connect with top recruiters and find your dream job through our network of professional agents</p>
+            <div class="hero-buttons">
+                <a href="#jobs" class="btn btn-accent">Find Jobs</a>
+                <a href="#agents" class="btn btn-outline" style="color: white; border-color: white;">Become an Agent</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>HOW IT WORKS</h2>
+                <p>Our platform connects job seekers with professional agents who can help land your next opportunity</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie fa-2x"></i>
+                    </div>
+                    <h3>Find an Agent</h3>
+                    <p>Connect with professional recruiters who specialize in your industry and can represent your interests.</p>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt fa-2x"></i>
+                    </div>
+                    <h3>Submit Your Resume</h3>
+                    <p>Upload your resume and let our agents match you with relevant job opportunities in our network.</p>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake fa-2x"></i>
+                    </div>
+                    <h3>Get Hired</h3>
+                    <p>When you land a job through our platform, both you and your agent benefit from our success-based model.</p>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="section" id="jobs" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>FIND YOUR NEXT OPPORTUNITY</h2>
+                <p>Browse through thousands of jobs from top companies worldwide</p>
+            </div>
+            
+            <div class="jobs-filter">
+                <div class="search-box">
+                    <input type="text" placeholder="Search for jobs, companies, or keywords">
+                </div>
+                <div class="filter-options">
+                    <select class="filter-select">
+                        <option>All Locations</option>
+                        <option>United States</option>
+                        <option>Europe</option>
+                        <option>Asia</option>
+                        <option>Remote</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>All Categories</option>
+                        <option>Technology</option>
+                        <option>Finance</option>
+                        <option>Healthcare</option>
+                        <option>Marketing</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="jobs-grid" id="jobsGrid">
+                <!-- Jobs will be loaded dynamically -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-primary">View All Jobs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>TRANSPARENT PRICING</h2>
+                <p>Pay only for results with our success-based pricing model</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Job Seeker</h3>
+                    <div class="price">$5<span>/application</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Submit to 5 jobs monthly</li>
+                        <li><i class="fas fa-check"></i> Basic agent matching</li>
+                        <li><i class="fas fa-check"></i> Application tracking</li>
+                        <li><i class="fas fa-times"></i> Priority support</li>
+                        <li><i class="fas fa-times"></i> Crawler data access</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>Professional</h3>
+                    <div class="price">$29<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited job applications</li>
+                        <li><i class="fas fa-check"></i> Priority agent matching</li>
+                        <li><i class="fas fa-check"></i> Advanced application tracking</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Basic crawler data access</li>
+                    </ul>
+                    <a href="#" class="btn btn-accent">Get Started</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$99<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Professional</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                        <li><i class="fas fa-check"></i> Advanced crawler data analytics</li>
+                        <li><i class="fas fa-check"></i> Custom reporting</li>
+                        <li><i class="fas fa-check"></i> API access</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">15,000+</div>
+                    <div class="stat-label">Jobs Available</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2,500+</div>
+                    <div class="stat-label">Professional Agents</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Interview Success Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Countries Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>READY TO ADVANCE YOUR CAREER?</h2>
+            <p>Join thousands of professionals who have found their dream jobs through our platform</p>
+            <div style="margin-top: 30px;">
+                <a href="#" class="btn btn-accent">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>TalentDash</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Connecting talent with opportunity through our network of professional agents.</p>
+                    <div class="auth-buttons">
+                        <a href="#" class="btn btn-outline" onclick="showLoginModal()">Log In</a>
+                        <a href="#" class="btn btn-primary" onclick="showRegisterModal()">Sign Up</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>For Job Seekers</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Browse Jobs</a></li>
+                        <li><a href="#">Find Agents</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Agents</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Become an Agent</a></li>
+                        <li><a href="#">Agent Resources</a></li>
+                        <li><a href="#">Commission Structure</a></li>
+                        <li><a href="#">Agent Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Report an Issue</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TalentDash. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 配置 - 替换为您的Apps Script Web App URL
+        const CONFIG = {
+            APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxGhbdWSwzFkzYfu-LQ6r2wY_qHzhd4uB0GU_nAH5lOdxE80LwvbUgu7OChp-b_50bh/exec'
+        };
+
+        // API类
+        class TalentDashAPI {
+            constructor() {
+                this.baseUrl = CONFIG.APPS_SCRIPT_URL;
+            }
+
+            async _request(action, data = {}) {
+                try {
+                    const formData = new FormData();
+                    formData.append('action', action);
+                    
+                    Object.keys(data).forEach(key => {
+                        formData.append(key, data[key]);
+                    });
+
+                    const response = await fetch(this.baseUrl, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+                    
+                    if (!result.success) {
+                        throw new Error(result.error || 'Request failed');
+                    }
+                    
+                    return result;
+                } catch (error) {
+                    console.error('API Request failed:', error);
+                    throw error;
+                }
+            }
+
+            async registerUser(userData) {
+                return await this._request('registerUser', userData);
+            }
+
+            async loginUser(loginData) {
+                return await this._request('loginUser', loginData);
+            }
+
+            async getJobs(filters = {}) {
+                return await this._request('getJobs', filters);
+            }
+
+            async submitApplication(applicationData) {
+                return await this._request('submitApplication', applicationData);
+            }
+
+            async getUserApplications(userId) {
+                return await this._request('getUserApplications', { userId });
+            }
+
+            async submitReport(reportData) {
+                return await this._request('submitReport', reportData);
+            }
+
+            async getCrawlerData(requestData) {
+                return await this._request('getCrawlerData', requestData);
+            }
+
+            async recordPayment(paymentData) {
+                return await this._request('recordPayment', paymentData);
+            }
+
+            async getDashboardStats() {
+                return await this._request('getDashboardStats');
+            }
+        }
+
+        // 创建全局API实例
+        const api = new TalentDashAPI();
+        let currentUser = null;
+
+        // 初始化应用
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            loadInitialJobs();
+        });
+
+        function initializeApp() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateUIForLoggedInUser();
+            }
+        }
+
+        function setupEventListeners() {
+            // 搜索和筛选事件
+            const searchInput = document.querySelector('.search-box input');
+            const filterSelects = document.querySelectorAll('.filter-select');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', debounce(handleJobSearch, 300));
+            }
+            
+            filterSelects.forEach(select => {
+                select.addEventListener('change', handleJobSearch);
+            });
+
+            // 视频错误处理
+            const video = document.querySelector('.video-background');
+            video.addEventListener('error', function() {
+                console.log('Local video failed to load');
+                video.style.display = 'none';
+                document.querySelector('.hero').style.backgroundImage = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            });
+        }
+
+        async function loadInitialJobs() {
+            try {
+                const result = await api.getJobs();
+                displayJobs(result.jobs);
+            } catch (error) {
+                showNotification('Failed to load jobs', 'error');
+            }
+        }
+
+        async function handleJobSearch() {
+            const searchTerm = document.querySelector('.search-box input').value;
+            const locationFilter = document.querySelector('.filter-select:nth-child(1)').value;
+            const categoryFilter = document.querySelector('.filter-select:nth-child(2)').value;
+            
+            const filters = {};
+            
+            if (searchTerm) filters.search = searchTerm;
+            if (locationFilter !== 'All Locations') filters.location = locationFilter;
+            if (categoryFilter !== 'All Categories') filters.category = categoryFilter;
+
+            try {
+                const result = await api.getJobs(filters);
+                displayJobs(result.jobs);
+            } catch (error) {
+                showNotification('Failed to load jobs', 'error');
+            }
+        }
+
+        function displayJobs(jobs) {
+            const jobsGrid = document.getElementById('jobsGrid');
+            
+            if (!jobsGrid) return;
+            
+            if (jobs.length === 0) {
+                jobsGrid.innerHTML = '<div class="no-jobs">No jobs found matching your criteria.</div>';
+                return;
+            }
+            
+            jobsGrid.innerHTML = jobs.map(job => `
+                <div class="job-card">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">${escapeHtml(job.title)}</h3>
+                            <p class="job-company">${escapeHtml(job.company)}</p>
+                        </div>
+                        ${isJobNew(job.posted_date) ? '<span class="new-tag">NEW</span>' : ''}
+                    </div>
+                    <div class="job-details">
+                        <div class="job-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${escapeHtml(job.location)}</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>${escapeHtml(job.salary)}</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>${escapeHtml(job.type)}</span>
+                        </div>
+                    </div>
+                    <p>${escapeHtml(job.description)}</p>
+                    <div class="job-actions">
+                        <div class="job-price">Apply: $${job.application_fee || 5}</div>
+                        <button class="btn btn-accent apply-job-btn" data-job-id="${job.id}" onclick="handleJobApplication('${job.id}')">
+                            Apply Now
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function handleJobApplication(jobId) {
+            if (!currentUser) {
+                showNotification('Please log in to apply for jobs', 'error');
+                return;
+            }
+
+            try {
+                showLoading('Submitting application...');
+                
+                const applicationData = {
+                    jobId: jobId,
+                    userId: currentUser.userId,
+                    resumeUrl: currentUser.resumeUrl || '',
+                    coverLetter: `Application for job ${jobId} by ${currentUser.name}`
+                };
+
+                const result = await api.submitApplication(applicationData);
+                
+                await api.recordPayment({
+                    userId: currentUser.userId,
+                    type: 'application',
+                    amount: 5,
+                    applicationId: result.applicationId,
+                    description: `Application fee for job ${jobId}`
+                });
+                
+                showNotification('Application submitted successfully!', 'success');
+                
+            } catch (error) {
+                showNotification(error.message, 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function updateUIForLoggedInUser() {
+            const authButtons = document.querySelector('.auth-buttons');
+            if (authButtons && currentUser) {
+                authButtons.innerHTML = `
+                    <span class="user-welcome">Welcome, ${currentUser.name}</span>
+                    <a href="#" class="btn btn-outline" onclick="handleLogout()">Logout</a>
+                    <a href="#dashboard" class="btn btn-primary">Dashboard</a>
+                `;
+            }
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            
+            const authButtons = document.querySelector('.auth-buttons');
+            if (authButtons) {
+                authButtons.innerHTML = `
+                    <a href="#" class="btn btn-outline" onclick="showLoginModal()">Log In</a>
+                    <a href="#" class="btn btn-primary" onclick="showRegisterModal()">Sign Up</a>
+                `;
+            }
+            
+            showNotification('Logged out successfully', 'success');
+        }
+
+        // 工具函数
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function isJobNew(postedDate) {
+            const posted = new Date(postedDate);
+            const now = new Date();
+            const diffTime = Math.abs(now - posted);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays <= 7;
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">&times;</button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        function showLoading(message = 'Loading...') {
+            const loadingEl = document.createElement('div');
+            loadingEl.id = 'loading-overlay';
+            loadingEl.innerHTML = `
+                <div class="loading-spinner"></div>
+                <p>${message}</p>
+            `;
+            
+            document.body.appendChild(loadingEl);
+        }
+
+        function hideLoading() {
+            const loadingEl = document.getElementById('loading-overlay');
+            if (loadingEl) {
+                loadingEl.remove();
+            }
+        }
+
+        // 模态框函数（简化版本）
+        function showLoginModal() {
+            showNotification('Login functionality would open here', 'info');
+        }
+
+        function showRegisterModal() {
+            showNotification('Registration functionality would open here', 'info');
+        }
+    </script>
+</body>
+</html>
