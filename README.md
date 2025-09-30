@@ -2,7 +2,7 @@
 
 A modern, full-stack recruitment platform built with Google Apps Script backend and pure HTML/CSS/JavaScript frontend.
 
-[![Watch the video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/QcvY6rE3ob0)
+[![Watch the demo video]([https://img.youtube.com/vi/VIDEO_ID/0.jpg](https://ibb.co/4ZgScH3N))](https://youtu.be/QcvY6rE3ob0)
 
 ## 🚀 Features
 
